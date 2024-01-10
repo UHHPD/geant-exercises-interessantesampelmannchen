@@ -1,15 +1,20 @@
+#include <iostream>
+
 void dEdx()
 {
   const Int_t nev = 1000;
   const Double_t density = 8.960;//g cm3
   const Double_t mass = 0.1057;
+  const Double_t betagamma = 0.1;
   const Double_t length = 0.2;
   app->InitMC("geometry/cubox");
-  app->SetPrimaryPDG(-13);
+  app->SetPrimaryPDG(-211);
 
   TH1F* hloss = new TH1F("hloss","; -dE [MeV]",100,0,10);
   TGraph* gdEdx =  new TGraph();
-  double momentum = 1;
+  for(double b = 0.01 ; b < 100001; b = b * 10)
+  {
+  double momentum = mass * b;
   for(int i = 0 ; i < nev ; ++i) {
     app->SetPrimaryMomentum(momentum);
     //hprim->Reset();
@@ -23,6 +28,8 @@ void dEdx()
   }
   gdEdx->SetPoint(gdEdx->GetN(),momentum/mass,hloss->GetMean() / density /length);
   std::cout << hloss->GetMean()  / density /length << '\n';
+  hloss -> Reset();
+}
   TCanvas* c1 = new TCanvas("c1");
   hloss->Draw();
   TCanvas* c2 = new TCanvas("c2");

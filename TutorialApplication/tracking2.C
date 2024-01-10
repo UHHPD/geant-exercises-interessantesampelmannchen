@@ -90,8 +90,8 @@ public:
   
   void setCov(int i, int j, double c) { fCov(i,j) = c;}
   
-  double x(double lambda) const { return 0;}//needs changes
-  double z(double lambda) const { return 0;}//needs changes
+  double x(double lambda) const { return x0() + r() * charge() * std::sin(charge()*lambda + phi0());}//needs changes
+  double z(double lambda) const { return x0() - r() * charge() * std::sin(charge()*lambda + phi0());}//needs changes
   double y(double) const { return 0; }
   
   double lambdaFromX(double posx) const { //needs changes
@@ -142,7 +142,7 @@ unsigned char getSignal(const std::string& n)
   //add noise
   c += gRandom->Gaus(0,3);
   //noise cut
-  int noisecut = 0;
+  int noisecut = 15;
   if( c < noisecut ) return 0;
   if(c > 255) return 255;
   return c;
@@ -397,7 +397,7 @@ void tracking2()
   bool doFit = false;
 
   // define particle and control parameters of loop   
-  unsigned int nevt = 1;
+  unsigned int nevt = 400;
   double p = 1.0;
   app->SetPrimaryPDG(-13);    // +/-11: PDG code of e+/- 
   /* other PDG codes     22: Photon    +-13: muon   
