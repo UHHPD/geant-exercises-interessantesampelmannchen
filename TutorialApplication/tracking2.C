@@ -138,7 +138,7 @@ unsigned char getSignal(const std::string& n)
   int c = app->depEinNode(n) * 600000;
   //if(c > 0) std::cout << "getSignal for " << n << " :" << c << std::endl;
   //add noise
-  c += gRandom->Gaus(0,3);
+  // c += gRandom->Gaus(0,3);
   //noise cut
   int noisecut = 15;
   if( c < noisecut ) return 0;
