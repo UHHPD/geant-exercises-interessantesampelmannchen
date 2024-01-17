@@ -91,7 +91,7 @@ public:
   void setCov(int i, int j, double c) { fCov(i,j) = c;}
   
   double x(double lambda) const { return x0() + r() * charge() * std::sin(charge() * lambda + phi0());}//needs changes
-  double z(double lambda) const { return x0() - r() * charge() * std::cos(charge() * lambda + phi0());}//needs changes
+  double z(double lambda) const { return z0() - r() * charge() * std::cos(charge() * lambda + phi0());}//needs changes
   double y(double) const { return 0; }
   
   double lambdaFromX(double posx) const { return (std::asin((posx - x0()) / (charge() * r())) - phi0()) / charge();}
