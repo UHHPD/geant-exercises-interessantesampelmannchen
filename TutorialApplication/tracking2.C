@@ -91,7 +91,7 @@ public:
   void setCov(int i, int j, double c) { fCov(i,j) = c;}
   
   double x(double lambda) const { return x0() + r() * charge() * std::sin(charge() * lambda + phi0());}//needs changes
-  double z(double lambda) const { return x0() - r() * charge() * std::sin(charge() * lambda + phi0());}//needs changes
+  double z(double lambda) const { return x0() - r() * charge() * std::cos(charge() * lambda + phi0());}//needs changes
   double y(double) const { return 0; }
   
   double lambdaFromX(double posx) const { return (std::asin((posx - x0()) / (charge() * r())) - phi0()) / charge();}
@@ -396,7 +396,7 @@ void tracking2()
 
   // define particle and control parameters of loop   
   unsigned int nevt = 1;
-  double p = 5.0;
+  double p = 1.0;
   app->SetPrimaryPDG(-13);    // +/-11: PDG code of e+/- 
   /* other PDG codes     22: Photon    +-13: muon   
                      +/-211: pion   +/-2212: proton     */
@@ -410,7 +410,7 @@ void tracking2()
   TObjArray* clusters = new TObjArray();
   clusters->SetOwner(true);
   for(unsigned int i=0;i<nevt;++i) {
-    bool draw = !i;
+    bool draw = (i == nevt - 1);
     double z = gRandom->Uniform(-5.0,5.0);
     app->SetPrimaryVertex(-50,0,z);
     double phi = gRandom->Uniform(TMath::Pi()/2-0.1,TMath::Pi()/2+0.1);
