@@ -94,9 +94,7 @@ public:
   double z(double lambda) const { return x0() - r() * charge() * std::sin(charge()*lambda + phi0());}//needs changes
   double y(double) const { return 0; }
   
-  double lambdaFromX(double posx) const { //needs changes
-    return 0;
-  }
+  double lambdaFromX(double posx) const { return (std::asin((posx - x0()) / (charge() * r())) - phi0()) / charge();}
 
   static double B() {
     TutorialApplication* app = (TutorialApplication*)TutorialApplication::Instance();
@@ -394,7 +392,7 @@ void tracking2()
   geom+=Bfield; geom.Append(")"); 
   app->InitMC(geom); 
 
-  bool doFit = false;
+  bool doFit = true;
 
   // define particle and control parameters of loop   
   unsigned int nevt = 400;
