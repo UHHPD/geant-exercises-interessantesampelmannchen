@@ -396,7 +396,7 @@ void tracking2()
 
   // define particle and control parameters of loop   
   unsigned int nevt = 1;
-  double p = 1.0;
+  double p = 5.0;
   app->SetPrimaryPDG(-13);    // +/-11: PDG code of e+/- 
   /* other PDG codes     22: Photon    +-13: muon   
                      +/-211: pion   +/-2212: proton     */
