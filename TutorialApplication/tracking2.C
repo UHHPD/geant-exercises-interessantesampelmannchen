@@ -74,10 +74,10 @@ public:
   
 
 
-  double pt() const { return 0;}//needs changes
+  double pt() const { return 0.3 * Track::B() * r();}//needs changes
 
   double rErr() const { return sqrt(fCov(0,0));}
-  double ptErr() const { return 1000;}//needs changes
+  double ptErr() const { return 0.3 * Track::B() * rErr();}//needs changes
 
 
   double cov(int i, int j) const { return fCov(i,j);}
@@ -90,8 +90,8 @@ public:
   
   void setCov(int i, int j, double c) { fCov(i,j) = c;}
   
-  double x(double lambda) const { return x0() + r() * charge() * std::sin(charge()*lambda + phi0());}//needs changes
-  double z(double lambda) const { return x0() - r() * charge() * std::sin(charge()*lambda + phi0());}//needs changes
+  double x(double lambda) const { return x0() + r() * charge() * std::sin(charge() * lambda + phi0());}//needs changes
+  double z(double lambda) const { return x0() - r() * charge() * std::sin(charge() * lambda + phi0());}//needs changes
   double y(double) const { return 0; }
   
   double lambdaFromX(double posx) const { return (std::asin((posx - x0()) / (charge() * r())) - phi0()) / charge();}
@@ -395,7 +395,7 @@ void tracking2()
   bool doFit = true;
 
   // define particle and control parameters of loop   
-  unsigned int nevt = 400;
+  unsigned int nevt = 1;
   double p = 1.0;
   app->SetPrimaryPDG(-13);    // +/-11: PDG code of e+/- 
   /* other PDG codes     22: Photon    +-13: muon   
