@@ -74,10 +74,10 @@ public:
   
 
 
-  double pt() const { return 0.3 * Track::B() * r();}//needs changes
+  double pt() const { return 0.3 * Track::B() * r() / 100;}//needs changes
 
   double rErr() const { return sqrt(fCov(0,0));}
-  double ptErr() const { return 0.3 * Track::B() * rErr();}//needs changes
+  double ptErr() const { return rErr() / r() * pt();}//needs changes
 
 
   double cov(int i, int j) const { return fCov(i,j);}
