@@ -378,7 +378,7 @@ void tracking2()
   TutorialApplication* app = (TutorialApplication*)TutorialApplication::Instance();
   // position of silicon layers in x   
   double pos1 = -45.0;
-  double pos2 = -20.0;
+  double pos2 = -30.0;
   double pos3 = 45.0; 
   double pitch = 0.0150;
   double materialLength = 0.05;//length of support structures
@@ -392,11 +392,11 @@ void tracking2()
   geom+=Bfield; geom.Append(")"); 
   app->InitMC(geom); 
 
-  bool doFit = true;
+  bool doFit = false;
 
   // define particle and control parameters of loop   
   unsigned int nevt = 1;
-  double p = 10.0;
+  double p = 100.0;
   app->SetPrimaryPDG(-13);    // +/-11: PDG code of e+/- 
   /* other PDG codes     22: Photon    +-13: muon   
                      +/-211: pion   +/-2212: proton     */
