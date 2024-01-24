@@ -392,11 +392,11 @@ void tracking2()
   geom+=Bfield; geom.Append(")"); 
   app->InitMC(geom); 
 
-  bool doFit = false;
+  bool doFit = true;
 
   // define particle and control parameters of loop   
-  unsigned int nevt = 1;
-  double p = 100.0;
+  unsigned int nevt = 500;
+  double p = 10.0;
   app->SetPrimaryPDG(-13);    // +/-11: PDG code of e+/- 
   /* other PDG codes     22: Photon    +-13: muon   
                      +/-211: pion   +/-2212: proton     */
