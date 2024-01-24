@@ -23,7 +23,7 @@ TH1F *hlayer3 = new TH1F("hlayer3","layer3;z [cm]; counts",100/0.0150,-50,50);
 TH1F *hresid1 = new TH1F("hresid1","resid1; z_{hit}-z_{true} [cm]; events",100,-0.1,0.1);
 TH1F *hresid2 = new TH1F("hresid2","resid2; z_{hit}-z_{true} [cm]; events",100,-0.1,0.1);
 TH1F *hresid3 = new TH1F("hresid3","resid3; z_{hit}-z_{true} [cm]; events",100,-0.1,0.1);
-TH1F *hpt = new TH1F("hpt","; p_{T} [GeV]",100,0,10);
+TH1F *hpt = new TH1F("hpt","; p_{T} [GeV]",100,0,20);
 TH1F *hptpull = new TH1F("hptpull","; (p_{T}^{meas} - p_{T}^{true})/#sigma",100,-10,10);
 
 class Cluster : public TVector3 {
