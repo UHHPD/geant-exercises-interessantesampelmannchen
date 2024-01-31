@@ -136,7 +136,7 @@ void CaloAna()
     app->SetPrimaryMomentum(p);
     app->RunMC(1,!(i%10));
     hcounts->Fill(p,CountChargedinScint());
-    hresponse->Fill(p,CountChargedinScint()/p);
+    hresponse->Fill(p,CountChargedinScint()/p,1);
     p += stepping;
     
     // reset internal histograms
@@ -151,5 +151,5 @@ void CaloAna()
   c->cd(4);  hcounts->Draw();
 
   TCanvas* c2 = new TCanvas();
-  c2->cd(); hresponse->Draw("colz");
+  c2->cd(); hresponse->Draw();
 }
