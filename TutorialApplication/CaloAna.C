@@ -24,7 +24,13 @@ Float_t XofFirstSecondary()
   return x;
 }
 
-
+int particle = -211;
+double calib = 0;
+switch particle {
+    case -11: calib = 14.0; break;
+    case 211: calib = 67.41; break;
+    case -211: calib = 72.65; break;
+    }
 
 Int_t CountChargedinScint()
 {
@@ -106,7 +112,7 @@ void CaloAna()
   unsigned int nevt = 100;
   double       p = 3;//GeV
 
-  app->SetPrimaryPDG(-211); 
+  app->SetPrimaryPDG(particle); 
   /* PDG codes     22: Photon    +/-11: e+/-  +-13: muon   
                +/-211: pion    +/-2212: proton              */
   app->SetPrimaryMomentum(p);
@@ -136,7 +142,7 @@ void CaloAna()
     app->SetPrimaryMomentum(p);
     app->RunMC(1,!(i%10));
     hcounts->Fill(p,CountChargedinScint());
-    hresponse->Fill(p,CountChargedinScint()/p,1);
+    hresponse->Fill(p,CountChargedinScint()/calib/p,1);
     p += stepping;
     
     // reset internal histograms
@@ -151,5 +157,5 @@ void CaloAna()
   c->cd(4);  hcounts->Draw();
 
   TCanvas* c2 = new TCanvas();
-  c2->cd(); hresponse->Draw();
+  hresponse->Draw();
 }
