@@ -26,11 +26,6 @@ Float_t XofFirstSecondary()
 
 int particle = -211;
 double calib = 0;
-switch(particle) {
-    case -11: calib = 14.0; break;
-    case 211: calib = 67.41; break;
-    case -211: calib = 72.65; break;
-    }
 
 Int_t CountChargedinScint()
 {
@@ -111,7 +106,11 @@ void CaloAna()
 
   unsigned int nevt = 100;
   double       p = 3;//GeV
-
+  switch(particle) {
+    case -11: calib = 14.0; break;
+    case 211: calib = 67.41; break;
+    case -211: calib = 72.65; break;
+    }
   app->SetPrimaryPDG(particle); 
   /* PDG codes     22: Photon    +/-11: e+/-  +-13: muon   
                +/-211: pion    +/-2212: proton              */
