@@ -141,6 +141,9 @@ void CaloAna()
     // reset internal histograms
     app->FinishRun();
   }
+
+
+  std::cout << FitSlicesY(hcounts);
   
   // display results  
   TCanvas* c = new TCanvas(); c->Divide(2,2);
@@ -148,4 +151,7 @@ void CaloAna()
   c->cd(2);  hwidth->Draw();
   c->cd(3);  hlength->Draw();
   c->cd(4);  hcounts->Draw();
+
+  TCanvas* c2 = new TCanvas();
+  c2->cd(); hresponse->Draw("colz");
 }
