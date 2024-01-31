@@ -23,7 +23,7 @@ TH1F *hlayer3 = new TH1F("hlayer3","layer3;z [cm]; counts",100/0.0150,-50,50);
 TH1F *hresid1 = new TH1F("hresid1","resid1; z_{hit}-z_{true} [cm]; events",100,-0.1,0.1);
 TH1F *hresid2 = new TH1F("hresid2","resid2; z_{hit}-z_{true} [cm]; events",100,-0.1,0.1);
 TH1F *hresid3 = new TH1F("hresid3","resid3; z_{hit}-z_{true} [cm]; events",100,-0.1,0.1);
-TH1F *hpt = new TH1F("hpt","; p_{T} [GeV]",100,0,20);
+TH1F *hpt = new TH1F("hpt","; p_{T} [GeV]",100,2,8);
 TH1F *hptpull = new TH1F("hptpull","; (p_{T}^{meas} - p_{T}^{true})/#sigma",100,-10,10);
 
 class Cluster : public TVector3 {
@@ -378,8 +378,8 @@ void tracking2()
   TutorialApplication* app = (TutorialApplication*)TutorialApplication::Instance();
   // position of silicon layers in x   
   double pos1 = -45.0;
-  double pos2 = -30.0;
-  double pos3 = 45.0; 
+  double pos2 = -38.75;
+  double pos3 = -22.5; 
   double pitch = 0.0150;
   double materialLength = 0.05;//length of support structures
   double Bfield = 2.0;//magnetic field in T
@@ -396,7 +396,7 @@ void tracking2()
 
   // define particle and control parameters of loop   
   unsigned int nevt = 500;
-  double p = 10.0;
+  double p = 5.0;
   app->SetPrimaryPDG(-13);    // +/-11: PDG code of e+/- 
   /* other PDG codes     22: Photon    +-13: muon   
                      +/-211: pion   +/-2212: proton     */

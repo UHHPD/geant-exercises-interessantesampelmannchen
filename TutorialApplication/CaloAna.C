@@ -69,7 +69,7 @@ void CaloAna()
 // initialize geometry: volumes and materials of a Sampling Calorimeter   
   Double_t AbsWid=2.;         //Absorber width
   Double_t SciWid=1.;         //Scintillator width, 
-  Double_t SizeFact=0.7;      //size of the calorimeter in interaction lengths labmda_I, 4.
+  Double_t SizeFact=4.0;      //size of the calorimeter in interaction lengths labmda_I, 4.
   Int_t IMat=1;               //material 1:Pb 2:Fe 
   TString geom("geometry/SamplingCalorimeter(");
   geom+=AbsWid; geom.Append(",");
@@ -106,7 +106,7 @@ void CaloAna()
   unsigned int nevt = 100;
   double       p = 3;//GeV
 
-  app->SetPrimaryPDG(-11); 
+  app->SetPrimaryPDG(-211); 
   /* PDG codes     22: Photon    +/-11: e+/-  +-13: muon   
                +/-211: pion    +/-2212: proton              */
   app->SetPrimaryMomentum(p);
