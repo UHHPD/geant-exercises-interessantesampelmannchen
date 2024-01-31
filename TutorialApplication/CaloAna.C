@@ -24,9 +24,6 @@ Float_t XofFirstSecondary()
   return x;
 }
 
-int particle = -211;
-double calib = 0;
-
 Int_t CountChargedinScint()
 {
   Int_t ncharged = 0;
@@ -98,12 +95,13 @@ void CaloAna()
   hcounts->SetXTitle("energy [GeV]");
   hcounts->SetYTitle("mean number of counts");
   TH2D* hresponse = new TH2D("hresponse","measured energy/particle energy vs particle energy; energy [GeV]; response",
-			     20,0.,10.,50,0,2);
+			     10,0.,10.,25,0,2);
 
 //simulate events at fixed momentum
   TH1F* hhelp; // for analysis of internal histograms
   Double_t xp[1]={0.90},xq[1];
-
+  int particle = -211;
+  double calib = 0;
   unsigned int nevt = 100;
   double       p = 3;//GeV
   switch(particle) {
@@ -134,14 +132,14 @@ void CaloAna()
   }
   
   // events at different momenta
-  nevt = 100; p = 0.1;
+  nevt = 100; p = 3;
   double stepping = 9.9 / nevt;
   // generate a large number of events
   for(unsigned int i=0;i<nevt;++i) {
     app->SetPrimaryMomentum(p);
     app->RunMC(1,!(i%10));
     hcounts->Fill(p,CountChargedinScint());
-    hresponse->Fill(p,CountChargedinScint()/calib/p,1);
+    hresponse->Fill(p,CountChargedinScint()/calib/p);
     p += stepping;
     
     // reset internal histograms
@@ -155,6 +153,6 @@ void CaloAna()
   c->cd(3);  hlength->Draw();
   c->cd(4);  hcounts->Draw();
 
-  TCanvas* c2 = new TCanvas(); c->Divide(1,1);
-  c2->cd(1); hresponse->Draw();
+  TCanvas* c2 = new TCanvas(); c2->Divide(1,1);
+  c2->cd(1); hresponse->Draw("BOX");
 }
