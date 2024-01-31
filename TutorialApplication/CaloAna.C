@@ -136,14 +136,12 @@ void CaloAna()
     app->SetPrimaryMomentum(p);
     app->RunMC(1,!(i%10));
     hcounts->Fill(p,CountChargedinScint());
+    hresponse->Fill(p,CountChargedinScint()/p);
     p += stepping;
     
     // reset internal histograms
     app->FinishRun();
   }
-
-
-  std::cout << FitSlicesY(hcounts);
   
   // display results  
   TCanvas* c = new TCanvas(); c->Divide(2,2);
