@@ -26,7 +26,7 @@ Float_t XofFirstSecondary()
 
 int particle = -211;
 double calib = 0;
-switch particle {
+switch(particle) {
     case -11: calib = 14.0; break;
     case 211: calib = 67.41; break;
     case -211: calib = 72.65; break;
