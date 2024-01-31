@@ -156,6 +156,6 @@ void CaloAna()
   c->cd(3);  hlength->Draw();
   c->cd(4);  hcounts->Draw();
 
-  TCanvas* c2 = new TCanvas();
-  hresponse->Draw();
+  TCanvas* c2 = new TCanvas(); c->Divide(1,1);
+  c2->cd(1); hresponse->Draw();
 }
