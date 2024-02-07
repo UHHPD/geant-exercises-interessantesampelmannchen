@@ -65,7 +65,7 @@ void CaloAna()
 {
   TutorialApplication* app = (TutorialApplication*)TutorialApplication::Instance();
 // initialize geometry: volumes and materials of a Sampling Calorimeter   
-  Double_t AbsWid=2.;         //Absorber width
+  Double_t AbsWid=0.5;         //Absorber width
   Double_t SciWid=1.;         //Scintillator width, 
   Double_t SizeFact=4.0;      //size of the calorimeter in interaction lengths labmda_I, 4.
   Int_t IMat=1;               //material 1:Pb 2:Fe 
